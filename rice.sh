@@ -4,8 +4,13 @@ GREEN='\033[0;32m'
 RESET='\033[0m'
 
 # Configuration de zsh
-
 dnf install zsh -y
+if type -p zsh > /dev/null; then
+    echo "zsh installe"
+else
+    echo "erreur d'installation de zsh"
+fi
+
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 dnf upgrade -y
