@@ -3,15 +3,17 @@
 GREEN='\033[0;32m'
 RESET='\033[0m'
 
-
+# Mise a jour
 dnf upgrade -y
+sleep 10
+
 
 # Installation des packages
 echo -e "${GREEN}--- Installation de i3 et i3-blocks ---${RESET}"
-dnf install i3 i3-blocks -y
+dnf install i3 i3blocks -y
 
 echo -e "${GREEN}--- Installation des packages de base ---${RESET}"
-vim nmap keepassxc tmux zathura vlc virtualbox -y
+dnf install vim nmap keepassxc tmux zathura vlc virtualbox -y
 
 # Installation de vscode
 echo -e "${GREEN}--- Installation de vscode ---${RESET}"
