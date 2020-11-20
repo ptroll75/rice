@@ -29,12 +29,12 @@ curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/t
   ./msfinstall
 
 # Configuration de zsh
+dnf install chsh -y 
 dnf install zsh -y
 if type -p zsh > /dev/null; then
     echo "zsh installe"
 else
     echo "erreur d'installation de zsh"
 fi
-dnf install chsh -y 
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
