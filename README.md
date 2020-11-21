@@ -10,8 +10,10 @@
 - autoconf
 - automake
 - util-linux-user
+- pandoc
 - zsh 
 - tmux
+- texlive
 
 ### General 
 - zathura (terminal based pdf viewer)
@@ -27,7 +29,7 @@
 ### Other 
 - metasploit 
 - ohmyzsh
-- pandoc
+- fontawesome
 
 ## **Install**
 git clone git@github.com:ptroll75/rice.git
