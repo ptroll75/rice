@@ -32,6 +32,8 @@
 - fontawesome
 
 ## **Install**
+```zsh:
 git clone git@github.com:ptroll75/rice.git
 cd rice 
 ./rice.sh 
+```
