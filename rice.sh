@@ -12,12 +12,21 @@ sleep 10
 # Installation des repertoires RPM fusion 
 dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-# Installation des packages
+# Installation des packages lies a i3
+# Le fichier i3blocks.conf se trouve dans /usr/local/etc/i3blocks.conf
 echo -e "${MAGEN}--- Installation de i3 ---${RESET}"
+dnf install autoconf automake -y
 dnf install i3 -y
+git clone https://github.com/vivien/i3blocks
+cd i3blocks
+./autogen.sh
+./configure
+make
+make install
 
 echo -e "${MAGEN}--- Installation des packages de base ---${RESET}"
 dnf install vim nmap.x86_64 keepassxc.x86_64 tmux -y
+dnf install lxappearance.x86_64 arc-theme -y 
 dnf install zathura.x86_64  zathura-pdf-mupdf.x86_64 -y
 dnf install vlc VirtualBox.x86_64  -y
 
@@ -42,7 +51,7 @@ if type -p zsh > /dev/null; then
 else
     echo "erreur d'installation de zsh"
 fi
-chsh -s $(which zsh)
+#chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Rappel 
