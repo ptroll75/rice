@@ -35,5 +35,6 @@
 ```zsh:
 git clone git@github.com:ptroll75/rice.git
 cd rice 
+chmod +x rice.sh
 ./rice.sh 
 ```
