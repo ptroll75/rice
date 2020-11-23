@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#ip addr | awk '/inet 10/{print substr($2,1,9)}'
+ip addr | grep "wlp58s0" | grep "inet" | cut -d " " -f 6 | cut -d "/" -f 1
+
