@@ -5,10 +5,10 @@ MAGEN='\e[95m'
 RED='ff334f'
 RESET='\033[0m'
 
-if [[ $EUID -ne 0 ]]; then
-   	echo "${RED}This script must be run as root${RESET}" 
-   	exit 1
-else
+if ! [ $(id -u) = 0 ]; then
+   echo "I am not root!"
+   exit 1
+fi
 
 # Functions
 function pause {
