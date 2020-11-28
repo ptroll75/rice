@@ -12,7 +12,7 @@ fi
 
 # Functions
 function pause {
-yes | pv -SpeL1 -s 10 > /dev/null
+echo -e "${MAGEN}--- Pause --- ${RESET}" && yes | pv -SpeL1 -s 10 > /dev/null
 }
 
 # Update
