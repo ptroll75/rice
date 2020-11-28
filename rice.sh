@@ -16,35 +16,34 @@ yes | pv -SpeL1 -s 5 > /dev/null
 }
 
 # Update
-dnf upgrade -y
-echo "${MAGEN}--- Updates OK ---${RESET}"
-pause
+dnf upgrade -y 
+echo -e "${MAGEN}--- Updates OK ---${RESET}"
 
 # Installing RPM fusion repos  
 dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
-# Installing i3 & i3blocks
-# Le fichier i3blocks.conf se trouve dans /usr/local/etc/i3blocks.conf
-echo -e "${MAGEN}--- i3 install ---${RESET}"
-mkdir /home/victor/i3blocks
-dnf install -y autoconf automake dnf install util-linux-user
-dnf install -y i3 
-git clone https://github.com/vivien/i3blocks  /home/victor/.config/i3blocks
-cd /home/victor/i3blocks
-./autogen.sh
-./configure
-make
-make install
-pause
-
 # Core packages install
 echo -e "${MAGEN}--- Core packages install ---${RESET}"
-dnf install -y vim nmap.x86_64 keepassxc.x86_64 tmux 
+dnf install -y autoconf automake util-linux-user
+dnf install -y pv vim nmap.x86_64 keepassxc.x86_64 tmux 
 dnf install -y texlive-scheme-full fontawesome-fonts.noarch lxappearance.x86_64 arc-theme
 dnf install -y zathura.x86_64  zathura-pdf-mupdf.x86_64 pandoc 
 dnf install -y vlc VirtualBox.x86_64  
 echo -e "${MAGEN}--- Core packages install done ---${RESET}"
+pause
+
+# Installing i3 & i3blocks
+# Le fichier i3blocks.conf se trouve dans /usr/local/etc/i3blocks.conf
+echo -e "${MAGEN}--- i3 install ---${RESET}"
+mkdir /home/victor/.config/i3blocks
+dnf install -y i3 
+git clone https://github.com/vivien/i3blocks  /home/victor/.config/i3blocks
+cd /home/victor/.config/i3blocks
+sh autogen.sh
+sh configure
+make
+make install
 pause
 
 # vscode install
@@ -57,7 +56,7 @@ pause
 echo -e "${MAGEN}--- Metasploit install ---${RESET}"
 curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
 chmod 755 msfinstall && \
-./msfinstall
+sh msfinstall
 pause
 
 # Seclists install
