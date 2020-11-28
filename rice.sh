@@ -25,8 +25,8 @@ rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
 # Core packages install
 echo -e "${MAGEN}--- Core packages install ---${RESET}"
-dnf install -y autoconf automake util-linux-user
-dnf install -y pv vim nmap.x86_64 keepassxc.x86_64 tmux 
+dnf install -y pv autoconf automake util-linux-user
+dnf install -y vim nmap.x86_64 keepassxc.x86_64 tmux 
 dnf install -y texlive-scheme-full fontawesome-fonts.noarch lxappearance.x86_64 arc-theme
 dnf install -y zathura.x86_64  zathura-pdf-mupdf.x86_64 pandoc 
 dnf install -y vlc VirtualBox.x86_64  
