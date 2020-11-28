@@ -3,6 +3,7 @@
 GREEN='\033[0;32m'
 MAGEN='\e[95m'
 RED='ff334f'
+BCRED= '\e[101'
 RESET='\033[0m'
 
 if ! [ $(id -u) = 0 ]; then
@@ -29,7 +30,7 @@ dnf install -y pv autoconf automake util-linux-user
 dnf install -y vim nmap.x86_64 keepassxc.x86_64 tmux 
 dnf install -y texlive-scheme-full fontawesome-fonts.noarch lxappearance.x86_64 arc-theme
 dnf install -y zathura.x86_64  zathura-pdf-mupdf.x86_64 pandoc 
-dnf install -y vlc VirtualBox.x86_64  
+dnf install -y vlc VirtualBox.x86_64 gobuster
 echo -e "${MAGEN}--- Core packages install done ---${RESET}"
 pause
 
@@ -62,10 +63,7 @@ pause
 # Seclists install
 mkdir /usr/share/listes
 git clone https://github.com/danielmiessler/SecLists.git /usr/share/listes
-
-# Gobuster install
-go get github.com/OJ/gobuster
-pause
+echo -e "${MAGEN}--- seclists cloned in ${BCRED}/usr/share/listes$ ${MAGEN}---${RESET}"
 
 # zsh configuration
 dnf install zsh -y
@@ -76,5 +74,9 @@ else
 fi
 su -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -s /bin/sh victor 
 
+# Finishing
+dnf upgrade -y 
+echo -e "${GREEN}--- rice done ---${RESET}"
+
 # Reminder 
-echo -e "${MAGEN}--- /!\ Installer burpsuite /!\ ---${MAGEN}"
+echo -e "${MAGEN}--- /!\ Installer burpsuite /!\ ---${RESET}"
