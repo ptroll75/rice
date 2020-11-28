@@ -1,0 +1,25 @@
+# Load oh-my-zsh library.
+antigen use oh-my-zsh
+# Load bundles from the default repo (oh-my-zsh).
+antigen bundle git
+antigen bundle command-not-found
+antigen bundle docker# Load bundles from external repos.
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle pip 
+antigen bundle colorize
+antigen bundle Aloxaf/fzf-tab
+antigen bundle github
+antigen bundle common-aliases
+antigen bundle extract 
+antigen bundle gnu-utils
+antigen bundle fzf 
+antigen bundle ssh 
+antigen bundle ssh-completion
+antigen bundle git 
+
+# Select theme.
+#antigen theme denysdovhan/spaceship-prompt
+# Tell Antigen that you're done.
+antigen apply
