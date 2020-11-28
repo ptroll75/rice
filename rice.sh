@@ -11,26 +11,14 @@ if [[ $EUID -ne 0 ]]; then
 else
 
 # Functions
-spinner()
-{
-    local pid=$!
-    local delay=0.75
-    local spinstr='...'
-    echo "Waiting "
-    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-        local temp=${spinstr#?}
-        printf "%s  " "$spinstr"
-        local spinstr=$temp${spinstr%"$temp"}
-        sleep $delay
-        printf "\b\b\b"
-    done
-    printf "    \b\b\b\b"
+function pause {
+yes | pv -SpeL1 -s 5 > /dev/null
 }
 
 # Update
 dnf upgrade -y
 echo "${MAGEN}--- Updates OK ---${RESET}"
-sleep 5 & spinner 
+pause
 
 # Installing RPM fusion repos  
 dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -48,7 +36,7 @@ cd /home/victor/i3blocks
 ./configure
 make
 make install
-sleep 10 $ spinner
+pause
 
 # Core packages install
 echo -e "${MAGEN}--- Core packages install ---${RESET}"
@@ -57,20 +45,20 @@ dnf install -y texlive-scheme-full fontawesome-fonts.noarch lxappearance.x86_64 
 dnf install -y zathura.x86_64  zathura-pdf-mupdf.x86_64 pandoc 
 dnf install -y vlc VirtualBox.x86_64  
 echo -e "${MAGEN}--- Core packages install done ---${RESET}"
-sleep 10 & spinner
+pause
 
 # vscode install
 echo -e "${MAGEN}--- vscode install ---${RESET}"
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 dnf check-update && dnf install code -y
-sleep 10 & spinner
+pause
 
 # Metasploit install
 echo -e "${MAGEN}--- Metasploit install ---${RESET}"
 curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
 chmod 755 msfinstall && \
 ./msfinstall
-sleep 3 & spinner
+pause
 
 # Seclists install
 mkdir /usr/share/listes
@@ -78,7 +66,7 @@ git clone https://github.com/danielmiessler/SecLists.git /usr/share/listes
 
 # Gobuster install
 go get github.com/OJ/gobuster
-sleep 10 & spinner
+pause
 
 # zsh configuration
 dnf install zsh -y
