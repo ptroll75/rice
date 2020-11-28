@@ -66,6 +66,7 @@ git clone https://github.com/danielmiessler/SecLists.git /usr/share/listes
 echo -e "${MAGEN}--- seclists cloned in ${BCRED}/usr/share/listes$ ${MAGEN}---${RESET}"
 
 # zsh configuration
+su -c "$(curl -L git.io/antigen > antigen.zsh)" -s /bin/sh victor
 dnf install zsh -y
 if type -p zsh > /dev/null; then
     echo "zsh installed"
